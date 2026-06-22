@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from app.obd2.models import OBD2Scan
+from app.vehicles.vehicles import Vehicle
 
 
 class OBD2Repository:
@@ -31,3 +32,14 @@ class OBD2Repository:
         self.db.commit()
         self.db.refresh(nuevo_scan)
         return nuevo_scan
+
+    def get_scans_by_vehicle(
+        self,
+        vehicle_id: str,
+    ):
+        return (
+            self.db.query(OBD2Scan)
+            .filter(OBD2Scan.vehicle_id == vehicle_id)
+            .order_by(OBD2Scan.scan_date)
+            .all()
+        )
