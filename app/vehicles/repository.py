@@ -9,9 +9,17 @@ class VehicleRepository:
         self.db = db
 
     def create_vehicle(
-        self, vin: str, plate: str, brand: str, model: str, year: int, color: str
+        self,
+        dealer_id: str,
+        vin: str,
+        plate: str,
+        brand: str,
+        model: str,
+        year: int,
+        color: str,
     ):
         new_vehicle = Vehicle(
+            dealer_id=dealer_id,
             vin=vin,
             plate=plate,
             brand=brand,

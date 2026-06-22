@@ -3,7 +3,6 @@ from sqlalchemy.sql import false
 
 
 class VehicleCreate(BaseModel):
-    id: str
     dealer_id: str
     vin: str
     plate: str
@@ -15,7 +14,7 @@ class VehicleCreate(BaseModel):
 
 class VehicleResponse(BaseModel):
     id: str
-    dealer_id: str
+    dealer_id: str | None = None
     vin: str
     plate: str
     brand: str
