@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from app.obd2.models import OBD2Scan
-from app.vehicles.vehicles import Vehicle
+from app.vehicles.models import Vehicle
 
 
 class OBD2Repository:

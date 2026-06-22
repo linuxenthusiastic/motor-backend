@@ -9,7 +9,7 @@ class Vehicle(Base):
     __table_args__ = {"schema": "obd2"}
 
     id = Column(String, primary_key=True, default=generate_uuid)
-    dealer_id = Column(String, ForeignKey("auth.dealers.id"), nullable=False)
+    dealer_id = Column(String, nullable=True)
     vin = Column(String, unique=True, nullable=False)
     plate = Column(String, nullable=False)
     brand = Column(String, nullable=False)
