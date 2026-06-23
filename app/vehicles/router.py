@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from app.auth.security import get_current_dealer
 from app.obd2.schemas import ScanCreate
 from app.shared.db.session import get_db
 from app.vehicles import repository
@@ -11,10 +12,14 @@ router = APIRouter(prefix="/vehicles", tags=["vehicles"])
 
 
 @router.post("/", response_model=VehicleResponse)
-def create_vehicle(vehicle: VehicleCreate, db: Session = Depends(get_db)):
+def create_vehicle(
+    vehicle: VehicleCreate,
+    db: Session = Depends(get_db),
+    current_dealer=Depends(get_current_dealer),
+):
     repo = VehicleRepository(db)
     new_vehicle = repo.create_vehicle(
-        dealer_id=vehicle.dealer_id,
+        dealer_id=current_dealer.id,
         vin=vehicle.vin,
         plate=vehicle.plate,
         brand=vehicle.brand,

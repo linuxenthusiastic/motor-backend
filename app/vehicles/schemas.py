@@ -3,7 +3,6 @@ from sqlalchemy.sql import false
 
 
 class VehicleCreate(BaseModel):
-    dealer_id: str
     vin: str
     plate: str
     brand: str

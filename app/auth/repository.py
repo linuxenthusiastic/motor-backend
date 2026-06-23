@@ -21,3 +21,6 @@ class DealerRepository:
 
     def get_dealer_by_email(self, email: str):
         return self.db.query(Dealer).filter(Dealer.email == email).first()
+
+    def get_dealer_by_id(self, id: str):
+        return self.db.query(Dealer).filter(Dealer.id == id).first()
