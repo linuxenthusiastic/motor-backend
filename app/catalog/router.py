@@ -5,8 +5,8 @@ from app.auth.security import get_current_dealer
 from app.catalog.models import CarModel
 from app.catalog.repository import CarModelRepository
 from app.catalog.schemas import CarModelCreate, CarModelResponse
+from app.shared.cache import get_cached, redis_client, set_cached
 from app.shared.db.session import get_db
-from app.shared.redis import get_cached, redis_client, set_cached
 
 router = APIRouter(prefix="/catalog", tags=["catalog"])
 
