@@ -22,3 +22,19 @@ export async function login(
   setToken(data.access_token);
   return data;
 }
+
+export async function register(
+  name: string,
+  email: string,
+  password: string,
+): Promise<void> {
+  const response = await apiFetch("/auth/register", {
+    method: "POST",
+    body: JSON.stringify({ name, email, password }),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error((err as { detail?: string }).detail ?? "Error al registrarse");
+  }
+}

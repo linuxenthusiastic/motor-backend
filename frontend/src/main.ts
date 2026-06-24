@@ -1,11 +1,16 @@
 import { renderLogin } from "./pages/login";
+import { renderRegister } from "./pages/register";
 import { renderCatalog } from "./pages/catalog";
 import { getToken } from "./api/client";
 
 const app = document.querySelector("#app") as HTMLElement;
 
 function showLogin(): void {
-  renderLogin(app, showCatalog);
+  renderLogin(app, showCatalog, showRegister);
+}
+
+function showRegister(): void {
+  renderRegister(app, showLogin, showLogin);
 }
 
 function showCatalog(): void {

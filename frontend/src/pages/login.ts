@@ -3,6 +3,7 @@ import { login } from "../api/auth";
 export function renderLogin(
   container: HTMLElement,
   onSuccess: () => void,
+  onRegisterClick?: () => void,
 ): void {
   container.innerHTML = `
     <form id="login-form">
@@ -13,8 +14,14 @@ export function renderLogin(
       <input type="password" id="password" required />
       <button type="submit">Entrar</button>
       <p id="login-error" style="color: red;"></p>
+      ${onRegisterClick ? '<p>¿No tenés cuenta? <a href="#" id="go-register">Registrate</a></p>' : ""}
     </form>
   `;
+
+  document.querySelector("#go-register")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    onRegisterClick?.();
+  });
 
   const form = document.querySelector("#login-form");
   if (form instanceof HTMLFormElement) {
