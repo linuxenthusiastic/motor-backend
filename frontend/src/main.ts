@@ -1,30 +1,22 @@
 import { renderLogin } from "./pages/login";
+import { renderCatalog } from "./pages/catalog";
 import { getToken } from "./api/client";
 
-const app = document.querySelector("#app");
+const app = document.querySelector("#app") as HTMLElement;
 
 function showLogin(): void {
-  if (app instanceof HTMLElement) {
-    renderLogin(app, () => {
-      showHome();
-    });
-  }
+  renderLogin(app, showCatalog);
 }
 
-function showHome(): void {
-  if (app instanceof HTMLElement) {
-    app.innerHTML = `<h2>Bienvenido a Motora</h2><p>Login exitoso.</p><button id="logout-btn">Cerrar sesión</button>`;
-    document.querySelector("#logout-btn")?.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      showLogin();
-    });
-  }
-}
-
-if (app instanceof HTMLElement) {
-  if (getToken()) {
-    showHome();
-  } else {
+function showCatalog(): void {
+  renderCatalog(app, () => {
+    localStorage.removeItem("token");
     showLogin();
-  }
+  });
+}
+
+if (getToken()) {
+  showCatalog();
+} else {
+  showLogin();
 }
