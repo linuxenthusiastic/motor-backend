@@ -2,12 +2,14 @@ import { getMe, type Dealer } from "../api/auth";
 
 export function renderProfile(container: HTMLElement, onBack: () => void): void {
   container.innerHTML = `
-    <div id="profile">
-      <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-        <h2>Mi perfil</h2>
-        <button id="back-btn">&larr; Volver</button>
-      </header>
-      <div id="profile-content">Cargando...</div>
+    <div class="page">
+      <div class="page__header">
+        <h2 class="page__title">Mi perfil</h2>
+        <div class="page__actions">
+          <button class="btn btn--ghost" id="back-btn">&larr; Volver</button>
+        </div>
+      </div>
+      <div id="profile-content" class="page__body">Cargando...</div>
     </div>
   `;
 
@@ -24,31 +26,29 @@ async function loadProfile(): Promise<void> {
     const dealer = await getMe();
     contentEl.innerHTML = renderDealerCard(dealer);
   } catch {
-    contentEl.innerHTML = "<p style='color:red;'>Error al cargar el perfil.</p>";
+    contentEl.innerHTML = '<p class="page__error">Error al cargar el perfil.</p>';
   }
 }
 
 function renderDealerCard(dealer: Dealer): string {
   return `
-    <table>
-      <tbody>
-        <tr>
-          <td style="padding:8px;color:#666;">Nombre</td>
-          <td style="padding:8px;"><strong>${dealer.name}</strong></td>
-        </tr>
-        <tr>
-          <td style="padding:8px;color:#666;">Email</td>
-          <td style="padding:8px;">${dealer.email}</td>
-        </tr>
-        <tr>
-          <td style="padding:8px;color:#666;">Rol</td>
-          <td style="padding:8px;">${dealer.role}</td>
-        </tr>
-        <tr>
-          <td style="padding:8px;color:#666;">ID</td>
-          <td style="padding:8px;font-size:0.85rem;color:#999;">${dealer.id}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="profile-card">
+      <div class="profile-card__row">
+        <span class="profile-card__label">Nombre</span>
+        <span class="profile-card__value">${dealer.name}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Email</span>
+        <span class="profile-card__value">${dealer.email}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Rol</span>
+        <span class="profile-card__value">${dealer.role}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">ID</span>
+        <span class="profile-card__value profile-card__value--muted">${dealer.id}</span>
+      </div>
+    </div>
   `;
 }
