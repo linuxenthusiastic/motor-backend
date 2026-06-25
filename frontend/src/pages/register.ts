@@ -6,17 +6,25 @@ export function renderRegister(
   onLoginClick: () => void,
 ): void {
   container.innerHTML = `
-    <form id="register-form">
-      <h2>Registro</h2>
-      <label for="name">Nombre</label>
-      <input type="text" id="name" required />
-      <label for="email">Email</label>
-      <input type="email" id="email" required />
-      <label for="password">Password</label>
-      <input type="password" id="password" required />
-      <button type="submit">Registrarse</button>
-      <p id="register-error" style="color:red;"></p>
-      <p>¿Ya tenés cuenta? <a href="#" id="go-login">Iniciá sesión</a></p>
+    <form id="register-form" class="form">
+      <h2 class="form__title">Crear cuenta</h2>
+      <div class="form__field">
+        <label class="form__label" for="name">Nombre</label>
+        <input class="form__input" type="text" id="name" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="email">Email</label>
+        <input class="form__input" type="email" id="email" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="password">Contraseña</label>
+        <input class="form__input" type="password" id="password" required />
+      </div>
+      <div class="form__actions">
+        <button class="btn btn--primary" type="submit">Registrarse</button>
+      </div>
+      <p class="form__error" id="register-error"></p>
+      <p class="form__footer">¿Ya tenés cuenta? <a class="form__link" href="#" id="go-login">Iniciá sesión</a></p>
     </form>
   `;
 
