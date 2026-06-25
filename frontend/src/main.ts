@@ -1,3 +1,4 @@
+import "./styles/main.css";
 import { renderLogin } from "./pages/login";
 import { renderRegister } from "./pages/register";
 import { renderCatalog } from "./pages/catalog";
