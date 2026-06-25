@@ -48,3 +48,9 @@ def get_current_dealer(
     if dealer is None:
         raise HTTPException(status_code=401, detail="Dealer no encontrado")
     return dealer
+
+
+def require_admin(current_dealer=Depends(get_current_dealer)):
+    if current_dealer.role != "admin":
+        raise HTTPException(status_code=403, detail="Acceso solo para administradores")
+    return current_dealer

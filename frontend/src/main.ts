@@ -2,7 +2,7 @@ import "./styles/main.css";
 import { renderLogin } from "./pages/login";
 import { renderRegister } from "./pages/register";
 import { renderCatalog } from "./pages/catalog";
-import { getToken } from "./api/client";
+import { resolveInitialRoute } from "./router";
 
 const app = document.querySelector("#app") as HTMLElement;
 
@@ -21,7 +21,7 @@ function showCatalog(): void {
   });
 }
 
-if (getToken()) {
+if (resolveInitialRoute() === "catalog") {
   showCatalog();
 } else {
   showLogin();

@@ -1,0 +1,115 @@
+.form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  max-width: 440px;
+  margin: var(--space-12) auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+.form__title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-1);
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form__label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.form__input {
+  display: block;
+  width: 100%;
+  padding: 10px var(--space-3);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+              background var(--transition-fast);
+}
+.form__input::placeholder {
+  color: var(--text-muted);
+}
+.form__input:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-overlay);
+}
+.form__input:focus {
+  border-color: var(--color-primary);
+  background: var(--bg-overlay);
+  box-shadow: 0 0 0 3px var(--color-primary-ring);
+}
+
+.form__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.form__actions .btn--primary {
+  flex: 1;
+  justify-content: center;
+  padding: 11px;
+}
+
+.form__error {
+  display: none;
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+  background: var(--color-danger-dim);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+.form__error:not(:empty) {
+  display: block;
+}
+
+.form__footer {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.form__link {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.form__link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}

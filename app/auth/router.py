@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.auth.repository import DealerRepository
 from app.auth.schemas import DealerCreate, DealerResponse, LoginRequest, LoginResponse
-from app.auth.security import create_access_token, hash_password, verify_password
+from app.auth.security import create_access_token, get_current_dealer, hash_password, verify_password
 from app.shared.db.session import get_db
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -43,3 +43,8 @@ def login(login: LoginRequest, db: Session = Depends(get_db)):
 
     else:
         raise HTTPException(status_code=401, detail="Email o Password incorrectos")
+
+
+@router.get("/me", response_model=DealerResponse)
+def me(current_dealer=Depends(get_current_dealer)):
+    return current_dealer

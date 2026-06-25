@@ -28,6 +28,10 @@ export function renderVehicleDetail(
             <span class="profile-card__label">Color</span>
             <span class="profile-card__value">${vehicle.color}</span>
           </div>
+          <div class="profile-card__row">
+            <span class="profile-card__label">Dealer</span>
+            <span class="profile-card__value">${vehicle.dealer_email ?? "—"}</span>
+          </div>
         </div>
       </div>
       <h3 class="page__subtitle">Historial OBD2</h3>

@@ -1,5 +1,5 @@
 import { getFavorites } from "../api/ugc";
-import { getAllVehicles, type Vehicle } from "../api/vehicles";
+import { getCatalogVehicles, getMyVehicles, type Vehicle } from "../api/vehicles";
 import { renderVehicleDetail } from "./vehicle-detail";
 
 export function renderFavorites(container: HTMLElement, onBack: () => void): void {
@@ -25,7 +25,8 @@ async function loadFavorites(container: HTMLElement, onBack: () => void): Promis
   if (!(listEl instanceof HTMLElement)) return;
 
   try {
-    const [favorites, vehicles] = await Promise.all([getFavorites(), getAllVehicles()]);
+    const [favorites, catalogVehicles, myVehicles] = await Promise.all([getFavorites(), getCatalogVehicles(), getMyVehicles()]);
+    const vehicles = [...catalogVehicles, ...myVehicles];
 
     if (favorites.length === 0) {
       listEl.innerHTML = '<p class="page__empty">No tenés vehículos favoritos todavía.</p>';

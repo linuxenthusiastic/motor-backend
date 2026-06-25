@@ -1,17 +1,27 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.auth.security import get_current_dealer
 from app.obd2.repository import OBD2Repository
 from app.obd2.schemas import ScanCreate, ScanResponse
 from app.shared.db.session import get_db
+from app.vehicles.repository import VehicleRepository
 
 router = APIRouter(prefix="/obd2", tags=["obd2"])
 
 
 @router.post("/scans", response_model=ScanResponse)
-def create_scan(scan: ScanCreate, db: Session = Depends(get_db)):
+def create_scan(
+    scan: ScanCreate,
+    db: Session = Depends(get_db),
+    current_dealer=Depends(get_current_dealer),
+):
+    vehicle_repo = VehicleRepository(db)
+    vehicle = vehicle_repo.get_vehicle_by_id(scan.vehicle_id)
+    if vehicle is None or vehicle.dealer_id != current_dealer.id:
+        raise HTTPException(status_code=403, detail="No tenés permiso para escanear este vehículo")
     repo = OBD2Repository(db)
-    nuevo_scan = repo.create_scan(
+    return repo.create_scan(
         vehicle_id=scan.vehicle_id,
         odometer=scan.odometer,
         rpm=scan.rpm,
@@ -20,7 +30,6 @@ def create_scan(scan: ScanCreate, db: Session = Depends(get_db)):
         error_codes=scan.error_codes,
         scan_date=scan.scan_date,
     )
-    return nuevo_scan
 
 
 @router.get("/scans/{vehicle_id}", response_model=list[ScanResponse])

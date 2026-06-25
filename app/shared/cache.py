@@ -1,8 +1,10 @@
 import json
+import os
 
 import redis
 
-redis_client = redis.Redis(host="localhost", port=6379, decode_responses=True)
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+redis_client = redis.Redis(host=REDIS_HOST, port=6379, decode_responses=True)
 
 CACHE_TTL_SECONDS = 60
 

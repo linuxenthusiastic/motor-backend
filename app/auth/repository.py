@@ -24,3 +24,9 @@ class DealerRepository:
 
     def get_dealer_by_id(self, id: str):
         return self.db.query(Dealer).filter(Dealer.id == id).first()
+
+    def get_dealers_by_ids(self, ids: list[str]):
+        return self.db.query(Dealer).filter(Dealer.id.in_(ids)).all()
+
+    def get_all_dealers(self):
+        return self.db.query(Dealer).all()

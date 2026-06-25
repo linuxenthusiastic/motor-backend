@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.shared.db.base import Base, generate_uuid
@@ -16,5 +16,6 @@ class Vehicle(Base):
     model = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
     color = Column(String, nullable=False)
+    is_published = Column(Boolean, nullable=False, default=False)
 
     scans = relationship("OBD2Scan", back_populates="vehicle")

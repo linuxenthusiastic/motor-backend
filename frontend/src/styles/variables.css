@@ -1,0 +1,68 @@
+:root {
+  --color-primary:        #D61E3B;
+  --color-primary-hover:  #B8192F;
+  --color-primary-dim:    rgba(214, 30, 59, 0.18);
+  --color-primary-ring:   rgba(214, 30, 59, 0.35);
+
+  --color-accent:         #E6CB1E;
+  --color-accent-hover:   #C9B019;
+  --color-accent-dim:     rgba(230, 203, 30, 0.15);
+  --color-accent-ring:    rgba(230, 203, 30, 0.35);
+
+  --bg-base:              #0F1117;
+  --bg-surface:           #171B23;
+  --bg-elevated:          #1E2330;
+  --bg-overlay:           #252B3A;
+
+  --border-subtle:        #1E2330;
+  --border-default:       #2A3045;
+  --border-strong:        #3A4258;
+
+  --text-primary:         #EEF0F3;
+  --text-secondary:       #8A909E;
+  --text-muted:           #525869;
+  --text-inverse:         #0F1117;
+
+  --color-danger:         #EF4444;
+  --color-danger-dim:     rgba(239, 68, 68, 0.12);
+  --color-success:        #22C55E;
+  --color-success-dim:    rgba(34, 197, 94, 0.12);
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg:   1.0625rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-4xl:  2.5rem;
+  --text-6xl:  5rem;
+
+  --shadow-sm:           0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:           0 4px 12px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-lg:           0 10px 30px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.3);
+  --shadow-glow-primary: 0 0 20px rgba(214, 30, 59, 0.25);
+  --shadow-glow-accent:  0 0 20px rgba(230, 203, 30, 0.2);
+
+  --transition-fast:   150ms ease;
+  --transition-base:   220ms ease;
+  --transition-smooth: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}

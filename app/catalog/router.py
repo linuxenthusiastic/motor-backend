@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.auth.security import get_current_dealer
+from app.auth.security import require_admin
 from app.catalog.models import CarModel
 from app.catalog.repository import CarModelRepository
 from app.catalog.schemas import CarModelCreate, CarModelResponse
@@ -15,7 +15,7 @@ router = APIRouter(prefix="/catalog", tags=["catalog"])
 def create_car_model(
     car_model: CarModelCreate,
     db: Session = Depends(get_db),
-    current_dealer=Depends(get_current_dealer),
+    current_dealer=Depends(require_admin),
 ):
     repo = CarModelRepository(db)
     new_car_model = repo.create_car_model(brand=car_model.brand, model=car_model.model)

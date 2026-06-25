@@ -1,0 +1,2 @@
+rosa = D61E3B
+amarillo = E6CB1E
