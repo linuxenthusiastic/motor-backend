@@ -7,17 +7,30 @@ export function renderVehicleDetail(
   onBack: () => void,
 ): void {
   container.innerHTML = `
-    <div id="vehicle-detail">
-      <button id="back-btn">&larr; Volver</button>
-      <h2>${vehicle.brand} ${vehicle.model} (${vehicle.year})</h2>
-      <table style="margin-bottom:1.5rem;">
-        <tbody>
-          <tr><td><strong>Patente</strong></td><td>${vehicle.plate}</td></tr>
-          <tr><td><strong>VIN</strong></td><td>${vehicle.vin}</td></tr>
-          <tr><td><strong>Color</strong></td><td>${vehicle.color}</td></tr>
-        </tbody>
-      </table>
-      <h3>Historial OBD2</h3>
+    <div class="page">
+      <div class="page__header">
+        <h2 class="page__title">${vehicle.brand} ${vehicle.model} (${vehicle.year})</h2>
+        <div class="page__actions">
+          <button class="btn btn--ghost" id="back-btn">&larr; Volver</button>
+        </div>
+      </div>
+      <div class="page__meta">
+        <div class="profile-card">
+          <div class="profile-card__row">
+            <span class="profile-card__label">Patente</span>
+            <span class="profile-card__value">${vehicle.plate}</span>
+          </div>
+          <div class="profile-card__row">
+            <span class="profile-card__label">VIN</span>
+            <span class="profile-card__value">${vehicle.vin}</span>
+          </div>
+          <div class="profile-card__row">
+            <span class="profile-card__label">Color</span>
+            <span class="profile-card__value">${vehicle.color}</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="page__subtitle">Historial OBD2</h3>
       <div id="scan-list">Cargando...</div>
     </div>
   `;
@@ -35,20 +48,20 @@ async function loadScans(vehicleId: string): Promise<void> {
     const scans = await getScansByVehicle(vehicleId);
 
     if (scans.length === 0) {
-      listEl.innerHTML = "<p>Sin scans registrados.</p>";
+      listEl.innerHTML = '<p class="page__empty">Sin scans registrados.</p>';
       return;
     }
 
     listEl.innerHTML = `
-      <table style="width:100%;border-collapse:collapse;">
+      <table class="data-table">
         <thead>
           <tr>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Fecha</th>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Odómetro</th>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">RPM</th>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Temp. refrigerante</th>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Voltaje batería</th>
-            <th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Códigos de error</th>
+            <th class="data-table__head-cell">Fecha</th>
+            <th class="data-table__head-cell">Odómetro</th>
+            <th class="data-table__head-cell">RPM</th>
+            <th class="data-table__head-cell">Temp. refrigerante</th>
+            <th class="data-table__head-cell">Voltaje batería</th>
+            <th class="data-table__head-cell">Códigos de error</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +70,7 @@ async function loadScans(vehicleId: string): Promise<void> {
       </table>
     `;
   } catch {
-    listEl.innerHTML = "<p style='color:red;'>Error al cargar el historial.</p>";
+    listEl.innerHTML = '<p class="page__error">Error al cargar el historial.</p>';
   }
 }
 
@@ -66,12 +79,12 @@ function renderScanRow(s: Scan): string {
   const errors = s.error_codes.trim() ? s.error_codes : "—";
   return `
     <tr>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${date}</td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${s.odometer} km</td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${s.rpm}</td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${s.coolant_temp} °C</td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${s.battery_voltage} V</td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">${errors}</td>
+      <td class="data-table__cell">${date}</td>
+      <td class="data-table__cell">${s.odometer} km</td>
+      <td class="data-table__cell">${s.rpm}</td>
+      <td class="data-table__cell">${s.coolant_temp} °C</td>
+      <td class="data-table__cell">${s.battery_voltage} V</td>
+      <td class="data-table__cell">${errors}</td>
     </tr>
   `;
 }
