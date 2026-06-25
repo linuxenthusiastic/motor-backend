@@ -211,20 +211,13 @@ docker compose up --build
 | HU-14 Registrar scan | `POST /obd2/scans` | Wizard paso 2 | `test_obd2.py` |
 | HU-15 Publicar | `PATCH /vehicles/{id}/publish` | Mis vehículos | `test_vehicles.py` |
 
+## Seed — Usuarios de prueba
 
-## SEED
-
-─────────────────────────┬───────────┬────────┐
-│          Email          │ Password  │  Rol   │
-├─────────────────────────┼───────────┼────────┤
-│ admin@motora.com        │ admin123  │ admin  │
-├─────────────────────────┼───────────┼────────┤
-│ carlos@automotora.com   │ carlos123 │ dealer │
-├─────────────────────────┼───────────┼────────┤
-│ maria@autosgonzalez.com │ maria123  │ dealer │
-├─────────────────────────┼───────────┼────────┤
-│ lucas@lucasautos.com    │ lucas123  │ dealer │
-├─────────────────────────┼───────────┼────────┤
-│ sofia@sofiacar.com      │ sofia123  │ dealer │
-├─────────────────────────┼───────────┼────────┤
-│ diego@diegomotors.com   │ diego123  │ dealer │
+| Email                    | Password   | Rol    |
+|---------------------------|------------|--------|
+| admin@motora.com         | admin123   | admin  |
+| carlos@automotora.com    | carlos123  | dealer |
+| maria@autosgonzalez.com  | maria123   | dealer |
+| lucas@lucasautos.com     | lucas123   | dealer |
+| sofia@sofiacar.com       | sofia123   | dealer |
+| diego@diegomotors.com    | diego123   | dealer |
