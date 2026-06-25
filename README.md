@@ -210,5 +210,3 @@ docker compose up --build
 | HU-13 Crear vehículo | `POST /vehicles/` | Wizard paso 1 | `test_vehicles.py::test_create_vehicle_with_token_succeeds` |
 | HU-14 Registrar scan | `POST /obd2/scans` | Wizard paso 2 | `test_obd2.py` |
 | HU-15 Publicar | `PATCH /vehicles/{id}/publish` | Mis vehículos | `test_vehicles.py` |
-
-*(completar el resto de las 16 historias siguiendo este mismo patrón)*
