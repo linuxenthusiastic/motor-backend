@@ -1,18 +1,12 @@
-from pydantic_settings import BaseSettings
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+_raw_url = os.getenv("DATABASE_URL", "postgresql://motora:motora@localhost:5432/motora")
+DATABASE_URL = _raw_url.replace("postgres://", "postgresql://", 1)
 
-class Settings(BaseSettings):
-    database_url: str = "postgresql://motora:motora@localhost:5432/motora"
-
-    class Config:
-        env_file = ".env"
-
-
-settings = Settings()
-_db_url = settings.database_url.replace("postgres://", "postgresql://", 1)
-engine = create_engine(_db_url)
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
