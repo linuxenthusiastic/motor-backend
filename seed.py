@@ -138,6 +138,8 @@ def reset_db(db) -> None:
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def seed() -> None:
+    import os as _os
+    print(f"[DEBUG] DATABASE_URL = {_os.getenv('DATABASE_URL', 'NOT SET')[:40]}...")
     reset = "--reset" in sys.argv
 
     print("🌱 Iniciando seed...\n")
